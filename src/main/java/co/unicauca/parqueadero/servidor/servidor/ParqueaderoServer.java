@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import co.unicauca.parqueadero.servidor.negocio.Parqueadero;
 import co.unicauca.parqueadero.servidor.negocio.GestorParqueadero;
+import co.unicauca.parqueadero.servidor.transversal.clsLogin;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -165,6 +166,17 @@ public class ParqueaderoServer implements Runnable {
                     salidaDecorada.println(atrParse.parseToJSON(objpar));
                 }
                 break;
+            case "login":
+                String login = parametros[1];
+                String password = parametros[2];
+                clsLogin objLogin=new clsLogin();
+                if (objLogin.login(login, password)) {
+                    salidaDecorada.println("TRUE");
+                } else {
+                    salidaDecorada.println("FALSE");
+                }
+                break;
+            
         }
     }
 
@@ -179,19 +191,5 @@ public class ParqueaderoServer implements Runnable {
         socket.close();
     }
 
-    /**
-     * Convierte el objeto Cliente a json
-     *
-     * @param ciu Objeto ciudadano
-     * @return cadena json
-     */
-    private String parseToJSON(Parqueadero parq) {
-        JsonObject jsonobj = new JsonObject();
-        
-        JsonArray jsonlist = new JsonArray();
-        jsonobj.addProperty("NOMBREPARQUEADERO", parq.getNombre());
-        jsonobj.addProperty("DIRECCION", parq.getDireccion());
-        jsonobj.addProperty("TELEFONO", parq.getTelefono());
-        return jsonobj.toString();
-    }
+    
 }

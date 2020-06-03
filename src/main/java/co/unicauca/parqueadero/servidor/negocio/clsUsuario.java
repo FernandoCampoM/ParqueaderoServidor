@@ -9,7 +9,7 @@ package co.unicauca.parqueadero.servidor.negocio;
  *
  * @author Fernando Campo
  */
-public abstract class  clsUsuario {
+public  class  clsUsuario {
     private String atrCedula;
     private String atrNombres;
     private String atrApellidos;
@@ -30,7 +30,7 @@ public abstract class  clsUsuario {
     }
 
     public void setAtrCedula(String prmCedula) {
-        this.atrCedula = atrCedula;
+        this.atrCedula = prmCedula;
     }
 
     public String getAtrNombres() {
@@ -38,7 +38,7 @@ public abstract class  clsUsuario {
     }
 
     public void setAtrNombres(String prmNombres) {
-        this.atrNombres = atrNombres;
+        this.atrNombres = prmNombres;
     }
 
     public String getAtrApellidos() {
@@ -46,7 +46,7 @@ public abstract class  clsUsuario {
     }
 
     public void setAtrApellidos(String prmApellidos) {
-        this.atrApellidos = atrApellidos;
+        this.atrApellidos = prmApellidos;
     }
 
     public String getAtrRol() {
@@ -54,7 +54,7 @@ public abstract class  clsUsuario {
     }
 
     public void setAtrRol(String prmRol) {
-        this.atrRol = atrRol;
+        this.atrRol = prmRol;
     }
 
     public String getAtrLogin() {
@@ -62,7 +62,7 @@ public abstract class  clsUsuario {
     }
 
     public void setAtrLogin(String prmLogin) {
-        this.atrLogin = atrLogin;
+        this.atrLogin = prmLogin;
     }
 
     public String getAtrPassword() {
@@ -70,9 +70,14 @@ public abstract class  clsUsuario {
     }
 
     public void setAtrPassword(String prmPassword) {
-        this.atrPassword = atrPassword;
+        this.atrPassword = prmPassword;
     }
     public boolean registrarEntrada(){
+        return false;
+    }
+    public boolean validarPasswod(String prmPassword){
+        if(atrPassword.endsWith(prmPassword))
+            return true;
         return false;
     }
 }

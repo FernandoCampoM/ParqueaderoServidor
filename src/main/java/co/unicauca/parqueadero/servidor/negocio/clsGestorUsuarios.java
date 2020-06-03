@@ -17,4 +17,7 @@ public class clsGestorUsuarios {
     public boolean create(clsUsuario prmUser){
         return atrUsuario.create(prmUser);
     }
+    public clsUsuario find(String prmLogin){
+        return atrUsuario.find(prmLogin);
+    }
 }

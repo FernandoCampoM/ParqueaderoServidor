@@ -9,9 +9,10 @@ import co.unicauca.parqueadero.servidor.negocio.*;
  *
  * @author Fernando Campo
  */
-public interface IUsuario {
-    public boolean create(clsUsuario prmUser);
-    public clsUsuario find(String prmLogin);
-    public boolean update(clsUsuario prmUser);
-    public boolean delete(String prmCedula);
+public interface IVehiculo {
+    public boolean create(clsVehiculo prmVehiculo);
+    public clsVehiculo find(String prmPlaca);
+    public boolean update(clsVehiculo prmVehiculo);
+    public boolean delete(String prmPLaca);
+    
 }

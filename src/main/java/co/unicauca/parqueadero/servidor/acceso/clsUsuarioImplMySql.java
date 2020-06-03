@@ -6,6 +6,7 @@
 package co.unicauca.parqueadero.servidor.acceso;
 
 import co.unicauca.parqueadero.servidor.negocio.clsUsuario;
+import java.sql.ResultSet;
 
 /**
  *
@@ -33,8 +34,19 @@ public class clsUsuarioImplMySql implements IUsuario {
     }
 
     @Override
-    public clsUsuario find(String prmCedula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public clsUsuario find(String prmLogin) {
+        ResultSet rs;
+        String sql="SELECT * FROM USUARIO WHERE LOGIN='"+prmLogin+"'";
+        clsUsuario objUser=null;
+        try {
+             rs=atrConsultas.consultasDML(sql);
+             if(rs.next()){
+                 objUser=new clsUsuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                 }
+             
+        } catch (Exception e) {
+        }
+        return objUser;
     }
 
     @Override
