@@ -10,14 +10,58 @@ package co.unicauca.parqueadero.servidor.negocio;
  * @author Fernando Campo
  */
 public class clsRegistroParqueo {
-    private clsVehiculo atrVehiculo;
-    private clsUsuario atrUsuario;
-    private clsFicha atrFicha;
-    private String atrNombresApellidosProp;
-    private String atrFechaHoraEntrada;
-    private String atrFechaHoraSalida;
-    private String atrNumeroCascos;
-    private String atrNumeroCasillero;
+    private clsVehiculo  atrVehiculo=null;
+    private clsUsuario atrUsuario=null;
+    private String atrCodigoBarras="";
+    private String atrNombresApellidosProp="";
+    private String atrFechaHoraEntrada="";
+    private String atrFechaHoraSalida="";
+    private String atrNumeroCascos="";
+    private String atrNumeroCasillero="";
+    private String atrDejaLlaves="";
+    private String atrObservaciones="";
+    private String atrIdParqueadero="";
+
+    
+
+    public clsRegistroParqueo(clsUsuario prmUsuario, clsVehiculo prmVehiculo, String prmCodigoBarras, String prmIdParqueadero, String prmNombresApellidosProp, String prmFechaHoraEntrada, String prmNumeroCascos, String prmNumeroCasillero, String prmDejaLlaves, String prmObservaciones) {
+        this.atrUsuario = prmUsuario;
+        atrVehiculo=prmVehiculo;
+        atrCodigoBarras=prmCodigoBarras;
+        atrIdParqueadero=prmIdParqueadero;
+        this.atrNombresApellidosProp = prmNombresApellidosProp;
+        this.atrFechaHoraEntrada = prmFechaHoraEntrada;
+        this.atrNumeroCascos = prmNumeroCascos;
+        this.atrNumeroCasillero = prmNumeroCasillero;
+        this.atrDejaLlaves = prmDejaLlaves;
+        atrObservaciones=prmObservaciones;
+    }
+    public clsRegistroParqueo(){
+        
+    }
+    public String getIdParqueadero() {
+        return atrIdParqueadero;
+    }
+
+    public void setIdParqueadero(String prmIdParqueadero) {
+        this.atrIdParqueadero = prmIdParqueadero;
+    }
+
+    public String getObservaciones() {
+        return atrObservaciones;
+    }
+
+    public void setObservaciones(String prmObservaciones) {
+        this.atrObservaciones = prmObservaciones;
+    }
+    public String getDejaLlaves() {
+        return atrDejaLlaves;
+    }
+
+    public void setDejaLlaves(String prmDejaLlaves) {
+        this.atrDejaLlaves = prmDejaLlaves;
+    }
+    
 
     public clsVehiculo getVehiculo() {
         return atrVehiculo;
@@ -35,13 +79,16 @@ public class clsRegistroParqueo {
         this.atrUsuario = prmUsuario;
     }
 
-    public clsFicha getFicha() {
-        return atrFicha;
+    public String getCodigoBarras() {
+        return atrCodigoBarras;
     }
 
-    public void setFicha(clsFicha prmFicha) {
-        this.atrFicha = prmFicha;
+    public void setCodigoBarras(String prmCodigoBarras) {
+        this.atrCodigoBarras = prmCodigoBarras;
     }
+
+    
+    
 
     public String getNombresApellidosProp() {
         return atrNombresApellidosProp;

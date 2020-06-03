@@ -12,23 +12,7 @@ import java.util.ArrayList;
  */
 public class RunMain {
     public static void main(String args[]){
-        //ParqueaderoServer regSer = new ParqueaderoServer();
-       // regSer.iniciar();
-        clsConsultasBD atrConsultas=clsConsultasBD.getInstancia();
-        ResultSet rs=null;
-	List<Parqueadero> listaParqueadero= new ArrayList();
-	String sql="SELECT * FROM PARQUEADERO";
-        try {			
-            rs=atrConsultas.consultasDML(sql);
-            
-            while (rs.next()) {
-		listaParqueadero.add(new Parqueadero(rs.getString(1),rs.getString(2),rs.getInt(3)));
-            }
-		atrConsultas.close();
-        } catch (SQLException e) {
-            System.out.println("Error: Clase ParqueaderoImpl, método getParqueaderos");
-	}
-        JSONServices p=new JSONServices();
-        System.out.println(p.parseToJSON(listaParqueadero));
+        ParqueaderoServer regSer = new ParqueaderoServer();
+        regSer.iniciar();
     }
 }

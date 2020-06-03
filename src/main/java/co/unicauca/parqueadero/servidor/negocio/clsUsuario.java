@@ -10,12 +10,12 @@ package co.unicauca.parqueadero.servidor.negocio;
  * @author Fernando Campo
  */
 public  class  clsUsuario {
-    private String atrCedula;
-    private String atrNombres;
-    private String atrApellidos;
-    private String atrRol;
-    private String atrLogin;
-    private String atrPassword;
+    private String atrCedula="";
+    private String atrNombres="";
+    private String atrApellidos="";
+    private String atrRol="";
+    private String atrLogin="";
+    private String atrPassword="";
     public clsUsuario(String prmCedula, String prmNombres, String prmApellidos, String prmRol, String prmLogin, String prmPassword) {
         atrCedula = prmCedula;
         atrNombres = prmNombres;
@@ -23,6 +23,9 @@ public  class  clsUsuario {
         atrRol = prmRol;
         atrLogin = prmLogin;
         atrPassword = prmPassword;
+    }
+    public clsUsuario(){
+        
     }
 
     public String getAtrCedula() {

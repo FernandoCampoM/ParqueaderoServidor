@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import co.unicauca.parqueadero.servidor.negocio.Parqueadero;
 import co.unicauca.parqueadero.servidor.negocio.GestorParqueadero;
+import co.unicauca.parqueadero.servidor.negocio.clsGestorParqueo;
+import co.unicauca.parqueadero.servidor.negocio.clsRegistroParqueo;
 import co.unicauca.parqueadero.servidor.transversal.clsLogin;
 
 import com.google.gson.JsonArray;
@@ -26,7 +28,7 @@ import java.util.List;
 public class ParqueaderoServer implements Runnable {
 
     private final GestorParqueadero gestor;
-
+    private clsGestorParqueo atrGestorParqueo;
     private static ServerSocket ssock;
     private static Socket socket;
 
@@ -39,6 +41,7 @@ public class ParqueaderoServer implements Runnable {
      */
     public ParqueaderoServer() {
         gestor = new GestorParqueadero();
+        atrGestorParqueo=new clsGestorParqueo();
     }
 
     /**
@@ -176,6 +179,14 @@ public class ParqueaderoServer implements Runnable {
                     salidaDecorada.println("FALSE");
                 }
                 break;
+            case "registrarEntrada":
+                clsRegistroParqueo objRegistro=atrParse.parseToRegistroParqueo(parametros[1]);
+                 if(atrGestorParqueo.registrarEntrada(objRegistro)){
+                     salidaDecorada.println("TRUE");
+                 }else{
+                     salidaDecorada.println("FALSE");
+                 }
+                 break;
             
         }
     }

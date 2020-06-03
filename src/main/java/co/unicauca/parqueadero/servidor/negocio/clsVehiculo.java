@@ -19,6 +19,9 @@ public class clsVehiculo {
         atrPlaca=prmPlaca;
         atrTipoVehiculo=prmTipoVehiculo;
     }
+    public clsVehiculo(){
+        
+    }
 
     public String getPlaca() {
         return atrPlaca;
