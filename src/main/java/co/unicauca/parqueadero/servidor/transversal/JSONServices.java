@@ -3,21 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.unicauca.parqueadero.servidor.servidor;
-import co.unicauca.parqueadero.servidor.negocio.*;
+package co.unicauca.parqueadero.servidor.transversal;
+
+import co.unicauca.parqueadero.servidor.negocio.Parqueadero;
+
+import co.unicauca.parqueadero.servidor.negocio.clsRegistroParqueo;
+import co.unicauca.parqueadero.servidor.negocio.clsUsuario;
+import co.unicauca.parqueadero.servidor.negocio.clsVehiculo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.util.List;
 import java.util.Properties;
+
 /**
  *
  * @author Fernando Campo
  */
 public class JSONServices {
-    private clsGestorUsuarios atrGestorUsuarios=new clsGestorUsuarios();
-    private clsGestorVehiculo atrGestorVehiculos=new clsGestorVehiculo();
     private static JSONServices atrParseToJSON;
     public static JSONServices getInstancia(){
         if(atrParseToJSON==null){
@@ -56,7 +59,7 @@ public class JSONServices {
         jsonObj.addProperty("NumeroCasillero",prmRegistro.getNumeroCasillero());
         jsonObj.addProperty("DejaLlaves",prmRegistro.getDejaLlaves());
         jsonObj.addProperty("Observaciones",prmRegistro.getObservaciones());
-        jsonObj.addProperty("IdPrqueadero",prmRegistro.getIdParqueadero());
+        jsonObj.addProperty("IdParqueadero",prmRegistro.getIdParqueadero());
         return jsonObj.toString();
     }
     public String parseToJSON(clsVehiculo prmVehiculo){

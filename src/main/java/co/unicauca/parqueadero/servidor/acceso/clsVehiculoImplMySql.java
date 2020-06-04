@@ -30,7 +30,7 @@ public class clsVehiculoImplMySql implements IVehiculo {
 
     @Override
     public clsVehiculo find(String prmPlaca) {
-        String sql="select * from vehiulo where placa='"+prmPlaca+"'";
+        String sql="select * from vehiculo where placa='"+prmPlaca+"'";
         ResultSet rs=null;
         clsVehiculo objVehiculo=null;
         try {

@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import co.unicauca.parqueadero.servidor.negocio.Parqueadero;
-import co.unicauca.parqueadero.servidor.servidor.JSONServices;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 

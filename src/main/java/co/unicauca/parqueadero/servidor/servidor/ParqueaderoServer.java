@@ -9,14 +9,13 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import co.unicauca.parqueadero.servidor.negocio.Parqueadero;
+import co.unicauca.parqueadero.servidor.negocio.*;
 import co.unicauca.parqueadero.servidor.negocio.GestorParqueadero;
 import co.unicauca.parqueadero.servidor.negocio.clsGestorParqueo;
 import co.unicauca.parqueadero.servidor.negocio.clsRegistroParqueo;
-import co.unicauca.parqueadero.servidor.transversal.clsLogin;
+import co.unicauca.parqueadero.servidor.transversal.*;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+
 import java.util.List;
 
 /**
@@ -29,6 +28,7 @@ public class ParqueaderoServer implements Runnable {
 
     private final GestorParqueadero gestor;
     private clsGestorParqueo atrGestorParqueo;
+    private clsGestorUsuarios atrGestorUsuarios;
     private static ServerSocket ssock;
     private static Socket socket;
 
@@ -42,6 +42,7 @@ public class ParqueaderoServer implements Runnable {
     public ParqueaderoServer() {
         gestor = new GestorParqueadero();
         atrGestorParqueo=new clsGestorParqueo();
+        atrGestorUsuarios=new clsGestorUsuarios();
     }
 
     /**
@@ -132,7 +133,7 @@ public class ParqueaderoServer implements Runnable {
      * por coma
      */
     private void decodificarPeticion(String peticion) {
-        StringTokenizer tokens = new StringTokenizer(peticion, ",");
+        StringTokenizer tokens = new StringTokenizer(peticion, "|");
         String parametros[] = new String[10];
 
         int i = 0;
@@ -172,7 +173,7 @@ public class ParqueaderoServer implements Runnable {
             case "login":
                 String login = parametros[1];
                 String password = parametros[2];
-                clsLogin objLogin=new clsLogin();
+                clsSeguridad objLogin=new clsSeguridad();
                 if (objLogin.login(login, password)) {
                     salidaDecorada.println("TRUE");
                 } else {
@@ -187,7 +188,14 @@ public class ParqueaderoServer implements Runnable {
                      salidaDecorada.println("FALSE");
                  }
                  break;
-            
+            case "findUser":
+                  clsUsuario objUser=atrGestorUsuarios.find(parametros[1]);
+                  if(objUser!=null){
+                     salidaDecorada.println(atrParse.parseToJSON(objUser));
+                 }else{
+                     salidaDecorada.println("NO_ENCONTRADO");
+                 }
+                 break;
         }
     }
 

@@ -37,9 +37,9 @@ public class clsConsultasBD {
 		try {		
                     atrConexion=new ConexionMysql();
                     atrConexion.conectar();
-			con=atrConexion.getConnection();
-			stm= con.createStatement();
-			varFilasAfectadas= stm.executeUpdate(prmConsultaSQL);
+                    con=atrConexion.getConnection();
+                    stm= con.createStatement();
+                    varFilasAfectadas= stm.executeUpdate(prmConsultaSQL);
 			
 		} catch (SQLException e) {
 			System.out.println("Error: Clase ParqueaderoImpl, método create");
@@ -48,14 +48,15 @@ public class clsConsultasBD {
         return varFilasAfectadas;
     }
     public ResultSet consultasDML(String prmConsultaSQL){
-         con =null;
-         stm= null;
+        stm= null;
+        con =null;
+         
         rs=null;
         try {
             atrConexion=new ConexionMysql();
             atrConexion.conectar();
             con=atrConexion.getConnection();
-	    stm=con.createStatement();
+	    stm= con.createStatement();
             rs=stm.executeQuery(prmConsultaSQL);
             
 	} catch (SQLException e) {

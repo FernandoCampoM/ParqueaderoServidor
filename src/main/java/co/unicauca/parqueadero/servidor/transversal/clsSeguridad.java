@@ -9,19 +9,7 @@ import co.unicauca.parqueadero.servidor.negocio.*;
  *
  * @author Fernando Campo
  */
-public class clsLogin {
-private String atrUser;
-    private String atrPassword;
-    
-    
-    public String getUser() {
-        return atrUser;
-    }
-
-    public String getPassword() {
-        return atrPassword;
-    }
-    
+public class clsSeguridad {
     public boolean login(String prmLogin, String prmPassword){
         clsGestorUsuarios objGestor=new clsGestorUsuarios();
         clsUsuario objUser=objGestor.find(prmLogin);

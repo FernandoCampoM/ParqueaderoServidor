@@ -17,10 +17,10 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
     @Override
     public boolean registrarEntrada(clsRegistroParqueo prmRegistroParqueo) {
         String sql="INSERT INTO REGISTROPARQUEO (CEDULA,PLACA,NOMBREAPELLIDOPRO,IDPARQUEADERO,CODIGOBARRAS,FECHAHORAENTRADA,NUMEROCASCOS,"
-                + "CASILLERO,DEJALLAVES,OBSERVACIONES) VALUES ("+prmRegistroParqueo.getUsuario().getAtrCedula()+",'"
+                + "CASILLERO,DEJALLAVES,OBSERVIONES) VALUES ("+prmRegistroParqueo.getUsuario().getAtrCedula()+",'"
                 +prmRegistroParqueo.getVehiculo().getPlaca()+"','"+prmRegistroParqueo.getNombresApellidosProp()+"',"
                 +prmRegistroParqueo.getIdParqueadero()+","+prmRegistroParqueo.getCodigoBarras()+",'"
-                +prmRegistroParqueo.getFechaHoraEntrada()+","+prmRegistroParqueo.getNumeroCascos()+","
+                +prmRegistroParqueo.getFechaHoraEntrada()+"',"+prmRegistroParqueo.getNumeroCascos()+","
                 +prmRegistroParqueo.getNumeroCasillero()+","+prmRegistroParqueo.getDejaLlaves()+",'"
                 +prmRegistroParqueo.getObservaciones()+"')";
         if(atrVehiculo.find(prmRegistroParqueo.getVehiculo().getPlaca())==null){
