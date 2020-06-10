@@ -17,7 +17,12 @@ public class clsGestorParqueo {
     public clsGestorParqueo() {
         atrRegistro=new RegistroParqueoImplMySql();
     }
-    
+    /**
+     * Realiza el registro de una entrada de un vehiculo
+     *
+     * @param prmRegistroParqueo Entrada que será registrada
+     * @return Verdadero si el rpoceso fue esitoso, Falso de lo cotrario.
+     */
     public boolean registrarEntrada(clsRegistroParqueo prmRegistroParqueo){
         return atrRegistro.registrarEntrada(prmRegistroParqueo);
     }

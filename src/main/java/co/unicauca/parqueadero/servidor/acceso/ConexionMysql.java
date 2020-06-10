@@ -17,7 +17,7 @@ public class ConexionMysql {
     private final String usuario;
     private final String contraseña;
     private final String url;
-
+    
     public ConexionMysql() {
         conexion = null;
         baseDatos = "parqueadero";
@@ -29,7 +29,7 @@ public class ConexionMysql {
     /**
      * Permite hacer la conexion con la base de datos
      *
-     * @return
+     * @return 1: Si hubo exito. -1: Sino Hubo exito
      */
     public int conectar() {
         try {
@@ -45,7 +45,6 @@ public class ConexionMysql {
 
     /**
      * Cierra la conexion con la base de datos
-     *
      */
     public void desconectar() {
         try {

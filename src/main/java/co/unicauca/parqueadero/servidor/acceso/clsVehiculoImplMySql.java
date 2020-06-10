@@ -17,6 +17,11 @@ public class clsVehiculoImplMySql implements IVehiculo {
     public clsVehiculoImplMySql(){
         atrConsultas=clsConsultasBD.getInstancia();
     }
+    /**
+     * Realiza un nuevo registro de vehiculo en la base de datos
+     * @param prmVehiculo Vehiculo que será registrado
+     * @return Verdadero si el proceso fue exitoso. Falso de lo contrario.
+     */
     @Override
     public boolean create(clsVehiculo prmVehiculo) {
         String sql="INSERT INTO VEHICULO (PLACA, TIPOVEHICULO) VALUES ('"+prmVehiculo.getPlaca()+"','"+
@@ -27,10 +32,14 @@ public class clsVehiculoImplMySql implements IVehiculo {
         }
         return false;
     }
-
+/**
+     * Recupera un vehiculo asociado a una placa dada
+     * @param prmPlaca Placa del vehiculo que se desea recuperar
+     * @return Vehiculo recuperado
+     */
     @Override
     public clsVehiculo find(String prmPlaca) {
-        String sql="select * from vehiculo where placa='"+prmPlaca+"'";
+        String sql="SELECT* FROM VEHICULO WHERE PLACA='"+prmPlaca+"'";
         ResultSet rs=null;
         clsVehiculo objVehiculo=null;
         try {
@@ -42,12 +51,20 @@ public class clsVehiculoImplMySql implements IVehiculo {
         }
         return objVehiculo;
     }
-
+/**
+     * Actualiza la información de un vehiculo dado
+     * @param prmVehiculo Vehiculo ha actualizar
+     * @return Verdadero si el proceso fue exitoso. Falso de lo contrario.
+     */
     @Override
     public boolean update(clsVehiculo prmVehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+/**
+     * Elimina un vehiculo asociado a una placa dad.
+     * @param prmPLaca Placa del vehiculo a eliminar.
+     * @return Verdadero si el proceso fue exitoso. Falso de lo contrario.
+     */
     @Override
     public boolean delete(String prmPLaca) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

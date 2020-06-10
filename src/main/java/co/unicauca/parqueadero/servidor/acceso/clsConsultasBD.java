@@ -19,60 +19,67 @@ import java.sql.Statement;
  * @author Fernando Campo
  */
 public class clsConsultasBD {
+
     private static clsConsultasBD atrConsultasBD;
     private ConexionMysql atrConexion;
     private Statement stm;
     private Connection con;
     private ResultSet rs;
-    public static clsConsultasBD getInstancia(){
-        if(atrConsultasBD==null){
-            atrConsultasBD= new clsConsultasBD();
+
+    public static clsConsultasBD getInstancia() {
+        if (atrConsultasBD == null) {
+            atrConsultasBD = new clsConsultasBD();
         }
         return atrConsultasBD;
     }
-    public int consultasDDL(String prmConsultaSQL){
-        stm= null;
-	 con=null;
-        int varFilasAfectadas=-1;
-		try {		
-                    atrConexion=new ConexionMysql();
-                    atrConexion.conectar();
-                    con=atrConexion.getConnection();
-                    stm= con.createStatement();
-                    varFilasAfectadas= stm.executeUpdate(prmConsultaSQL);
-			
-		} catch (SQLException e) {
-			System.out.println("Error: Clase ParqueaderoImpl, método create");
-			e.printStackTrace();
-		}
+
+    public int consultasDDL(String prmConsultaSQL) {
+
+        int varFilasAfectadas = -1;
+        try {
+            stm = null;
+            con = null;
+            atrConexion = new ConexionMysql();
+            atrConexion.conectar();
+            con = atrConexion.getConnection();
+            stm = con.createStatement();
+            varFilasAfectadas = stm.executeUpdate(prmConsultaSQL);
+
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ParqueaderoImpl, método create");
+            e.printStackTrace();
+        }
         return varFilasAfectadas;
     }
-    public ResultSet consultasDML(String prmConsultaSQL){
-        stm= null;
-        con =null;
-         
-        rs=null;
+
+    public ResultSet consultasDML(String prmConsultaSQL) {
+        rs = null;
         try {
-            atrConexion=new ConexionMysql();
+            stm = null;
+            con = null;
+            atrConexion = new ConexionMysql();
             atrConexion.conectar();
-            con=atrConexion.getConnection();
-	    stm= con.createStatement();
-            rs=stm.executeQuery(prmConsultaSQL);
-            
-	} catch (SQLException e) {
-            System.out.println("Error: "+e.getMessage());
-	}
+            con = atrConexion.getConnection();
+            stm = con.createStatement();
+            rs = stm.executeQuery(prmConsultaSQL);
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
         return rs;
     }
-    public void close(){
+
+    public void close() {
         try {
             stm.close();
             con.close();
-            if(rs!=null)
+            if (rs != null) {
                 rs.close();
+            }
         } catch (SQLException e) {
-            System.out.println("Error: "+e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
-        
+
     }
+
 }
