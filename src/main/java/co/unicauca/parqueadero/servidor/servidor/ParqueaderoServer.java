@@ -15,7 +15,6 @@ import co.unicauca.parqueadero.servidor.negocio.clsGestorParqueo;
 import co.unicauca.parqueadero.servidor.negocio.clsRegistroParqueo;
 import co.unicauca.parqueadero.servidor.transversal.*;
 
-
 import java.util.List;
 
 /**
@@ -35,14 +34,15 @@ public class ParqueaderoServer implements Runnable {
     private Scanner entradaDecorada;
     private PrintStream salidaDecorada;
     private static final int PUERTO = 5000;
-    private JSONServices atrParse=JSONServices.getInstancia();
+    private JSONServices atrParse = JSONServices.getInstancia();
+
     /**
      * Constructor
      */
     public ParqueaderoServer() {
         gestor = new GestorParqueadero();
-        atrGestorParqueo=new clsGestorParqueo();
-        atrGestorUsuarios=new clsGestorUsuarios();
+        atrGestorParqueo = new clsGestorParqueo();
+        atrGestorUsuarios = new clsGestorUsuarios();
     }
 
     /**
@@ -155,12 +155,12 @@ public class ParqueaderoServer implements Runnable {
         switch (accion) {
             case "getParqueaderos":
                 List<Parqueadero> par = gestor.getParqueaderos();
-                 if (par.size()==0) {
+                if (par.size() == 0) {
                     salidaDecorada.println("NO_ENCONTRADO");
                 } else {
                     salidaDecorada.println(atrParse.parseToJSON(par));
                 }
-                break;   
+                break;
             case "consultarParqueadero":
                 String id = parametros[1];
                 Parqueadero objpar = gestor.find(id);
@@ -173,7 +173,7 @@ public class ParqueaderoServer implements Runnable {
             case "login":
                 String login = parametros[1];
                 String password = parametros[2];
-                clsSeguridad objLogin=new clsSeguridad();
+                clsSeguridad objLogin = new clsSeguridad();
                 if (objLogin.login(login, password)) {
                     salidaDecorada.println("TRUE");
                 } else {
@@ -181,21 +181,37 @@ public class ParqueaderoServer implements Runnable {
                 }
                 break;
             case "registrarEntrada":
-                clsRegistroParqueo objRegistro=atrParse.parseToRegistroParqueo(parametros[1]);
-                 if(atrGestorParqueo.registrarEntrada(objRegistro)){
-                     salidaDecorada.println("TRUE");
-                 }else{
-                     salidaDecorada.println("FALSE");
-                 }
-                 break;
+                clsRegistroParqueo objRegistro = atrParse.parseToRegistroParqueo(parametros[1]);
+                if (atrGestorParqueo.registrarEntrada(objRegistro)) {
+                    salidaDecorada.println("TRUE");
+                } else {
+                    salidaDecorada.println("FALSE");
+                }
+                break;
             case "findUser":
-                  clsUsuario objUser=atrGestorUsuarios.find(parametros[1]);
-                  if(objUser!=null){
-                     salidaDecorada.println(atrParse.parseToJSON(objUser));
-                 }else{
-                     salidaDecorada.println("NO_ENCONTRADO");
-                 }
-                 break;
+                clsUsuario objUser = atrGestorUsuarios.find(parametros[1]);
+                if (objUser != null) {
+                    salidaDecorada.println(atrParse.parseToJSON(objUser));
+                } else {
+                    salidaDecorada.println("NO_ENCONTRADO");
+                }
+                break;
+            case "buscarXplaca":
+                objRegistro = atrGestorParqueo.buscarXplaca(parametros[1]);
+                if (atrGestorParqueo.registrarEntrada(objRegistro)) {
+                    salidaDecorada.println(atrParse.parseToJson(objRegistro));
+                } else {
+                    salidaDecorada.println("NO_ENCONTRADO");
+                }
+                break;
+            case "buscarXcodigo":
+                objRegistro = atrGestorParqueo.buscarXcodigo(parametros[1]);
+                if (atrGestorParqueo.registrarEntrada(objRegistro)) {
+                    salidaDecorada.println(atrParse.parseToJson(objRegistro));
+                } else {
+                    salidaDecorada.println("NO_ENCONTRADO");
+                }
+                break;
         }
     }
 
@@ -210,5 +226,4 @@ public class ParqueaderoServer implements Runnable {
         socket.close();
     }
 
-    
 }

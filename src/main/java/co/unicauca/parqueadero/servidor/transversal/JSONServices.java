@@ -60,6 +60,7 @@ public class JSONServices {
         jsonObj.addProperty("DejaLlaves",prmRegistro.getDejaLlaves());
         jsonObj.addProperty("Observaciones",prmRegistro.getObservaciones());
         jsonObj.addProperty("IdParqueadero",prmRegistro.getIdParqueadero());
+        jsonObj.addProperty("EntregaFicha",prmRegistro.getEntregaFicha());
         return jsonObj.toString();
     }
     public String parseToJSON(clsVehiculo prmVehiculo){
@@ -113,6 +114,7 @@ public class JSONServices {
         objRegistro.setDejaLlaves(properties.getProperty("DejaLlaves"));
         objRegistro.setObservaciones(properties.getProperty("Observaciones"));
         objRegistro.setIdParqueadero(properties.getProperty("IdParqueadero"));
+        objRegistro.setEntregaFicha(properties.getProperty("EntregaFicha"));
         return objRegistro;
     }
 }

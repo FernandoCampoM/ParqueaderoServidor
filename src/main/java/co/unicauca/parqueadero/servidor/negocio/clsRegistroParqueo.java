@@ -21,6 +21,9 @@ public class clsRegistroParqueo {
     private String atrDejaLlaves="";
     private String atrObservaciones="";
     private String atrIdParqueadero="";
+    private String atrEntregaFicha="";
+
+    
 
     
 
@@ -35,6 +38,13 @@ public class clsRegistroParqueo {
         this.atrNumeroCasillero = prmNumeroCasillero;
         this.atrDejaLlaves = prmDejaLlaves;
         atrObservaciones=prmObservaciones;
+    }
+    public String getEntregaFicha() {
+        return atrEntregaFicha;
+    }
+
+    public void setEntregaFicha(String prmEntregaFicha) {
+        this.atrEntregaFicha = prmEntregaFicha;
     }
     public clsRegistroParqueo(){
         

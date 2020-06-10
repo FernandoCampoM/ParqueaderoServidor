@@ -26,4 +26,10 @@ public class clsGestorParqueo {
     public boolean registrarEntrada(clsRegistroParqueo prmRegistroParqueo){
         return atrRegistro.registrarEntrada(prmRegistroParqueo);
     }
+    public clsRegistroParqueo buscarXplaca(String prmPlca) {
+       return atrRegistro.buscarXplaca(prmPlca);
+    }
+    public clsRegistroParqueo buscarXcodigo(String prmCodigo) {
+        return atrRegistro.buscarXcodigo(prmCodigo);
+    }
 }
