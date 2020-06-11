@@ -198,7 +198,7 @@ public class ParqueaderoServer implements Runnable {
                 break;
             case "buscarXplaca":
                 objRegistro = atrGestorParqueo.buscarXplaca(parametros[1]);
-                if (atrGestorParqueo.registrarEntrada(objRegistro)) {
+                if (objRegistro!=null) {
                     salidaDecorada.println(atrParse.parseToJson(objRegistro));
                 } else {
                     salidaDecorada.println("NO_ENCONTRADO");
@@ -206,7 +206,7 @@ public class ParqueaderoServer implements Runnable {
                 break;
             case "buscarXcodigo":
                 objRegistro = atrGestorParqueo.buscarXcodigo(parametros[1]);
-                if (atrGestorParqueo.registrarEntrada(objRegistro)) {
+                if (objRegistro!=null) {
                     salidaDecorada.println(atrParse.parseToJson(objRegistro));
                 } else {
                     salidaDecorada.println("NO_ENCONTRADO");
