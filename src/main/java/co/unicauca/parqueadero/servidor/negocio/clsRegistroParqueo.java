@@ -22,6 +22,7 @@ public class clsRegistroParqueo {
     private String atrObservaciones="";
     private String atrIdParqueadero="";
     private String atrEntregaFicha="";
+    private String atrIdRegistro="";
 
     
 
@@ -39,6 +40,15 @@ public class clsRegistroParqueo {
         this.atrDejaLlaves = prmDejaLlaves;
         atrObservaciones=prmObservaciones;
     }
+
+    public String getIdRegistro() {
+        return atrIdRegistro;
+    }
+
+    public void setIdRegistro(String prmIdRegistro) {
+        this.atrIdRegistro = prmIdRegistro;
+    }
+    
     public String getEntregaFicha() {
         return atrEntregaFicha;
     }

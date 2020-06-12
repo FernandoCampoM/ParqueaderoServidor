@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Fernando Campo
  */
 public class RegistroParqueoImplMySql implements IRegistroParqueo {
-
+    IFactura atrFacturaBD=new clsFacturaImplMySql();
     private clsConsultasBD atrConsultas = clsConsultasBD.getInstancia();
     private IVehiculo atrVehiculo = new clsVehiculoImplMySql();
 
@@ -51,6 +51,11 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
      */
     @Override
     public boolean registrarSalida(clsRegistroParqueo prmRegistroParqueo) {
+        String sql="UPDATE registroparqueo set fechahorasalida='"+prmRegistroParqueo.getFechaHoraSalida()+"', entregaficha="+prmRegistroParqueo.getEntregaFicha()+" where idregistro="+prmRegistroParqueo.getIdRegistro();
+        if (atrConsultas.consultasDDL(sql) > 0) {
+            atrConsultas.close();
+            return true;
+        }
         return false;
     }
 
