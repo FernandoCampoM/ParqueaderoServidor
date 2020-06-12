@@ -34,7 +34,9 @@ public class ParqueaderoImplMySql implements IParqueadero {
         try {
             rs = atrConsultas.consultasDML(sql);
             while (rs.next()) {
-                listaParqueadero.add(new Parqueadero(rs.getString(1), rs.getString(2), rs.getInt(3)));
+                Parqueadero objParqueadero=new Parqueadero(rs.getString(1), rs.getString(2), rs.getInt(3));
+                objParqueadero.setId(rs.getString(4));
+                listaParqueadero.add(objParqueadero);
             }
             atrConsultas.close();
         } catch (SQLException e) {
@@ -58,6 +60,7 @@ public class ParqueaderoImplMySql implements IParqueadero {
             rs = atrConsultas.consultasDML(sql);
             while (rs.next()) {
                 parqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getInt(3));
+                parqueadero.setId(rs.getString(4));
             }
             atrConsultas.close();
         } catch (SQLException e) {

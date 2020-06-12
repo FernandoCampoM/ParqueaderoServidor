@@ -12,9 +12,12 @@ import co.unicauca.parqueadero.servidor.negocio.clsUsuario;
 import co.unicauca.parqueadero.servidor.negocio.clsVehiculo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
 
 /**
  *
@@ -29,11 +32,14 @@ public class JSONServices {
         return atrParseToJSON;
     }
     public String parseToJSON(List<Parqueadero> prmParqueaderos){
-        JsonArray jsonArray = new JsonArray();
+        JsonObject jsonObj=new JsonObject();
+        int i=1;
         for (Parqueadero objParqueadero : prmParqueaderos) {
-            jsonArray.add(parseToJson(objParqueadero));
+            jsonObj.addProperty(String.valueOf(i), parseToJSON(objParqueadero));
+            System.out.println("Objeto: "+jsonObj.toString());
+            i++;
         }
-        return jsonArray.toString();
+        return jsonObj.toString();
     }
     public String parseToJSON(Parqueadero prmParqueadero){
         return parseToJson(prmParqueadero).toString();
@@ -78,6 +84,31 @@ public class JSONServices {
         jsonObj.addProperty("Login", prmUser.getAtrLogin());
         jsonObj.addProperty("Password",prmUser.getAtrPassword());
         return jsonObj.toString();
+    }
+    public List<Parqueadero> parseToParqueaderos(String prmJSONParqueadero){
+        List<Parqueadero> objParqueaderos=new ArrayList();
+        int i=1;
+        try {
+            Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
+        while(true){
+            objParqueaderos.add(parseToParqueadero(properties.getProperty(String.valueOf(i))));
+            i++;
+        }
+        } catch (Exception e) {
+            System.out.println("Eror: "+e.getMessage());
+        }
+         return objParqueaderos;
+    }
+    public Parqueadero parseToParqueadero(String prmJSONParqueadero){
+        Parqueadero objParqueadero=new Parqueadero();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
+        objParqueadero.setNombre(properties.getProperty("NombreParqueadero"));
+        objParqueadero.setDireccion(properties.getProperty("Direccion"));
+        objParqueadero.setTelefono(Long.parseLong(properties.getProperty("Telefono")));
+        objParqueadero.setId(properties.getProperty("IDParqueadero"));
+        return objParqueadero;
     }
     public clsUsuario parseToUsuario(String prmJSONUser){
         clsUsuario objUser=new clsUsuario();
