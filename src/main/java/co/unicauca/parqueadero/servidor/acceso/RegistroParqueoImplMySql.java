@@ -89,7 +89,7 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
 
     @Override
     public clsRegistroParqueo buscarXcodigo(String prmCodigo) {
-        String sql="SELECT* FROM VEHICULO WHERE CODIGOBARRAS="+prmCodigo+" and fechahorasalida is null";
+        String sql="SELECT* FROM registroparqueo WHERE CODIGOBARRAS="+prmCodigo+" and fechahorasalida is null";
         clsVehiculo objVehiculo=new clsVehiculo();
         clsRegistroParqueo objRegistro;
         try {
@@ -99,7 +99,7 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
             }else{
                 return null;
             }
-            sql="select* vehiculo where placa='"+rs.getString(3)+"'";
+            sql="select* from vehiculo where placa='"+rs.getString(3)+"'";
             rs=atrConsultas.consultasDML(sql);
             if(rs.next()){
               objVehiculo.setPlaca(rs.getString(1));
