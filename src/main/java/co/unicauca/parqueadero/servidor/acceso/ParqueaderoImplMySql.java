@@ -34,7 +34,7 @@ public class ParqueaderoImplMySql implements IParqueadero {
         try {
             rs = atrConsultas.consultasDML(sql);
             while (rs.next()) {
-                Parqueadero objParqueadero=new Parqueadero(rs.getString(1), rs.getString(2), rs.getInt(3));
+                Parqueadero objParqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getString(3));
                 objParqueadero.setId(rs.getString(4));
                 listaParqueadero.add(objParqueadero);
             }
@@ -59,7 +59,7 @@ public class ParqueaderoImplMySql implements IParqueadero {
         try {
             rs = atrConsultas.consultasDML(sql);
             while (rs.next()) {
-                parqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getInt(3));
+                parqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getString(3));
                 parqueadero.setId(rs.getString(4));
             }
             atrConsultas.close();
@@ -131,6 +131,33 @@ public class ParqueaderoImplMySql implements IParqueadero {
             System.out.println("Error: Clase ParqueaderoImpl, método getParqueaderos");
         }
         return false;
+    }
+
+    @Override
+    public List<Parqueadero> findXcedula(String prmCedula) {
+        String sql = "select* from usuarioparqueadero where cedula=" + prmCedula;
+        ResultSet rs;
+        String idParqueadero = "";
+        List<Parqueadero> listaParqueadero = new ArrayList();
+        try {
+            rs = atrConsultas.consultasDML(sql);
+            if (rs.next()) {
+                idParqueadero = rs.getString(2);
+                sql = "SELECT * FROM PARQUEADERO WHERE IDPARQUEADERO=" + idParqueadero;
+                rs = atrConsultas.consultasDML(sql);
+                while (rs.next()) {
+                    Parqueadero objParqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getString(3));
+                    objParqueadero.setId(rs.getString(4));
+                    listaParqueadero.add(objParqueadero);
+                }
+                atrConsultas.close();
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ParqueaderoImpl, método getParqueaderos");
+        }
+        return listaParqueadero;
     }
 
 }

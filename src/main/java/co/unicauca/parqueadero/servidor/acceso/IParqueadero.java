@@ -43,7 +43,7 @@ public interface IParqueadero {
      * @return
      */
     public boolean eliminar(String prmId);
-
+    public List<Parqueadero> findXcedula(String prmCedula);
    
     
 }

@@ -5,6 +5,7 @@
  */
 package co.unicauca.parqueadero.servidor.acceso;
 import co.unicauca.parqueadero.servidor.negocio.*;
+import java.util.List;
 /**
  *
  * @author Fernando Campo
@@ -17,5 +18,5 @@ public interface ITarifas {
      *
      * @return
      */
-    public clsTarifas getTarifas();
+    public List<clsTarifas> getTarifas();
 }

@@ -8,6 +8,8 @@ package co.unicauca.parqueadero.servidor.acceso;
 import co.unicauca.parqueadero.servidor.negocio.clsTarifas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,22 +28,20 @@ public class clsTarifasImplMySql implements ITarifas{
     }
 
     @Override
-    public clsTarifas getTarifas() {
+    public List<clsTarifas> getTarifas() {
         String sql="select * from tarifa";
-        clsTarifas objTarifas=null;
+        List<clsTarifas> objTarifas=new ArrayList();
         try {
             ResultSet rs=atrConsultas.consultasDML(sql);
             while(rs.next()){
-                
+                clsTarifas objTarifa=new clsTarifas();
+                objTarifa.setTipoTarifa(rs.getString(2));
+                objTarifa.setCosto(rs.getString(3));
+                objTarifa.setTipoVehiculo(rs.getString(4));
             }
         } catch (SQLException e) {
         }
         return objTarifas;
-    }
-    private void asignarTarifa(clsTarifas prmTarifa, String prmCase){
-        switch (prmCase){
-            case "DIAMOTO":
-        }
     }
     
 }
