@@ -27,9 +27,11 @@ public class GestorParqueadero {
     public boolean actualizar(Parqueadero parq) {
         return parqueaderos.actualizar(parq);
     }
-
+    
     public boolean eliminar(String nombre) {
         return parqueaderos.eliminar(nombre);
     }
-
+    public List<Parqueadero> findXcedula(String prmCedula){
+        return parqueaderos.findXcedula(prmCedula);
+    }
 }

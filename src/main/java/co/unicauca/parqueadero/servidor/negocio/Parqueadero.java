@@ -8,17 +8,17 @@ package co.unicauca.parqueadero.servidor.negocio;
 public class Parqueadero {
     private String nombre;
     private String direccion;
-    private long telefono;
+    private String telefono;
     private String atrId;
 
     public Parqueadero() {
         this.nombre = "";
         this.direccion = "";
-        this.telefono = 0;
+        this.telefono = "";
         atrId="";
     }
     
-    public Parqueadero(String nombre, String direccion, int telefono) {
+    public Parqueadero(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -40,7 +40,7 @@ public class Parqueadero {
         this.direccion = direccion;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
     public void setId(String prmId){
@@ -50,7 +50,7 @@ public class Parqueadero {
         return atrId;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     

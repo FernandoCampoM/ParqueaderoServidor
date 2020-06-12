@@ -28,6 +28,7 @@ public class ParqueaderoServer implements Runnable {
     private final GestorParqueadero gestor;
     private clsGestorParqueo atrGestorParqueo;
     private clsGestorUsuarios atrGestorUsuarios;
+    private clsGestorTarifas atrGestorTarifas;
     private static ServerSocket ssock;
     private static Socket socket;
 
@@ -43,6 +44,7 @@ public class ParqueaderoServer implements Runnable {
         gestor = new GestorParqueadero();
         atrGestorParqueo = new clsGestorParqueo();
         atrGestorUsuarios = new clsGestorUsuarios();
+        atrGestorTarifas=new clsGestorTarifas();
     }
 
     /**
@@ -211,6 +213,20 @@ public class ParqueaderoServer implements Runnable {
                 } else {
                     salidaDecorada.println("NO_ENCONTRADO");
                 }
+                break;
+            case "usuariosParqueadero":
+                par = gestor.findXcedula(parametros[1]);
+                if (par.size() == 0) {
+                    salidaDecorada.println("NO_ENCONTRADO");
+                } else {
+                    salidaDecorada.println(atrParse.parseToJSON(par));
+                }
+                break;
+            case "valorApagar":
+                
+                break;
+            case "guardarFactura":
+                
                 break;
         }
     }

@@ -106,7 +106,7 @@ public class JSONServices {
         Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
         objParqueadero.setNombre(properties.getProperty("NombreParqueadero"));
         objParqueadero.setDireccion(properties.getProperty("Direccion"));
-        objParqueadero.setTelefono(Long.parseLong(properties.getProperty("Telefono")));
+        objParqueadero.setTelefono(properties.getProperty("Telefono"));
         objParqueadero.setId(properties.getProperty("IDParqueadero"));
         return objParqueadero;
     }
