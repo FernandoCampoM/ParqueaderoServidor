@@ -10,6 +10,7 @@ import co.unicauca.parqueadero.servidor.negocio.Parqueadero;
 import co.unicauca.parqueadero.servidor.negocio.clsRegistroParqueo;
 import co.unicauca.parqueadero.servidor.negocio.clsUsuario;
 import co.unicauca.parqueadero.servidor.negocio.clsVehiculo;
+import co.unicauca.parqueadero.servidor.negocio.clsFactura;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -30,6 +31,13 @@ public class JSONServices {
             atrParseToJSON=new JSONServices();
         }
         return atrParseToJSON;
+    }
+    public String parseToJSON(clsFactura prmFactura){
+        JsonObject jsonObj=new JsonObject();
+        jsonObj.addProperty("ID", prmFactura.getId());
+        jsonObj.addProperty("IdRegistro", prmFactura.getIdRegistroParqueo());
+        jsonObj.addProperty("valorApagar", prmFactura.getValorApagar());
+        return jsonObj.toString();
     }
     public String parseToJSON(List<Parqueadero> prmParqueaderos){
         JsonObject jsonObj=new JsonObject();
@@ -109,6 +117,15 @@ public class JSONServices {
         objParqueadero.setTelefono(properties.getProperty("Telefono"));
         objParqueadero.setId(properties.getProperty("IDParqueadero"));
         return objParqueadero;
+    }
+    public clsFactura parseToFactura(String prmJSONFactura){
+        clsFactura objFactura=new clsFactura();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONFactura, Properties.class);
+        objFactura.setId(properties.getProperty("ID"));
+        objFactura.setRegistroParqueo(properties.getProperty("IdRegistro"));
+        objFactura.setValorApagar(properties.getProperty("valorApagar"));
+        return objFactura;
     }
     public clsUsuario parseToUsuario(String prmJSONUser){
         clsUsuario objUser=new clsUsuario();
