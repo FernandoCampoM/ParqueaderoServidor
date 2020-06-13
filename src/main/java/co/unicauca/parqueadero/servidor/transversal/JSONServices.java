@@ -75,6 +75,7 @@ public class JSONServices {
         jsonObj.addProperty("Observaciones",prmRegistro.getObservaciones());
         jsonObj.addProperty("IdParqueadero",prmRegistro.getIdParqueadero());
         jsonObj.addProperty("EntregaFicha",prmRegistro.getEntregaFicha());
+        jsonObj.addProperty("IdRegistro", prmRegistro.getIdRegistro());
         return jsonObj.toString();
     }
     public String parseToJSON(clsVehiculo prmVehiculo){
@@ -163,6 +164,7 @@ public class JSONServices {
         objRegistro.setObservaciones(properties.getProperty("Observaciones"));
         objRegistro.setIdParqueadero(properties.getProperty("IdParqueadero"));
         objRegistro.setEntregaFicha(properties.getProperty("EntregaFicha"));
+        objRegistro.setIdRegistro(properties.getProperty("IdRegistro"));
         return objRegistro;
     }
 }

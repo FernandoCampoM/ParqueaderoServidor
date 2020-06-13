@@ -13,11 +13,10 @@ import java.util.ArrayList;
  */
 public class RunMain {
     public static void main(String args[]){
-        //ParqueaderoServer regSer = new ParqueaderoServer();
-        //regSer.iniciar();
-        GestorParqueadero gestor=new GestorParqueadero();
+        ParqueaderoServer regSer = new ParqueaderoServer();
+        regSer.iniciar();
+    /* clsGestorUsuarios gestor=new clsGestorUsuarios();
         JSONServices parse=new JSONServices();
-        System.out.println(parse.parseToJSON(gestor.getParqueaderos()));
-        List<Parqueadero> objParqueaderos=parse.parseToParqueaderos(parse.parseToJSON(gestor.getParqueaderos()));
+        System.out.println(parse.parseToJSON(gestor.find("fernando")));*/
     }
 }
