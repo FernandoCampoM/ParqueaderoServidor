@@ -56,8 +56,9 @@ public class clsGestorFacturas {
         int costo=0;
         int mediodia=6;
         int factorDiferencial=0;
-        
+        try{
         if(prmHoras>=0 && prmHoras<=3){
+           
             costo=Integer.parseInt(atrGestorTarifas.selectTarifa(prmTipoVehiculo, "HORA").getCosto());
             valorApagar=prmHoras*costo;
         }else if(prmHoras>=4 && prmHoras<12){
@@ -72,6 +73,9 @@ public class clsGestorFacturas {
             factorDiferencial=factorDiferencial*(costo/24);
             valorApagar=costo+factorDiferencial;
         }
+        }catch(Exception e){
+                System.out.println("Error valorApagarH: "+e.getMessage());
+                }
         return valorApagar;
     }
 }

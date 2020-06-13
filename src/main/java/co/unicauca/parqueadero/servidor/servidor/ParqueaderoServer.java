@@ -223,10 +223,17 @@ public class ParqueaderoServer implements Runnable {
                 }
                 break;
             case "valorApagar":
-                salidaDecorada.println(atrGestorFacturas.valorApagar(parametros[1], Integer.parseInt(parametros[2]), Integer.parseInt(parametros[3]), Integer.parseInt(parametros[4])));
+                salidaDecorada.println(atrGestorFacturas.valorApagar(parametros[1], Integer.parseInt(parametros[2]), Integer.parseInt(parametros[3]), Integer.parseInt(parametros[4])) );
                 break;
             case "guardarFactura":
                 if (atrGestorFacturas.guardar(atrParse.parseToFactura(parametros[1]))) {
+                    salidaDecorada.println("TRUE");
+                } else {
+                    salidaDecorada.println("FALSE");
+                }
+                break;
+                case "registrarSalida":
+                if (atrGestorParqueo.registrarSalida(atrParse.parseToRegistroParqueo(parametros[1]))) {
                     salidaDecorada.println("TRUE");
                 } else {
                     salidaDecorada.println("FALSE");

@@ -38,6 +38,7 @@ public class clsTarifasImplMySql implements ITarifas{
                 objTarifa.setTipoTarifa(rs.getString(2));
                 objTarifa.setCosto(rs.getString(3));
                 objTarifa.setTipoVehiculo(rs.getString(4));
+                objTarifas.add(objTarifa);
             }
         } catch (SQLException e) {
         }
