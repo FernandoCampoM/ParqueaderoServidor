@@ -28,6 +28,6 @@ public interface IRegistroParqueo {
      * @return Verdadero si el rpoceso fue esitoso, Falso de lo cotrario.
      */
     public boolean registrarSalida(clsRegistroParqueo prmRegistroParqueo);
-    public clsRegistroParqueo buscarXplaca(String prmPlca);
-    public clsRegistroParqueo buscarXcodigo(String prmCodigo);
+    public clsRegistroParqueo buscarXplaca(String prmPlca, String prmIdParqueadero);
+    public clsRegistroParqueo buscarXcodigo(String prmCodigo, String prmIdParqueadero);
 }

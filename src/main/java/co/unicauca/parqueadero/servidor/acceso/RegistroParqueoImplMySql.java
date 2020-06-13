@@ -60,7 +60,7 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
     }
 
     @Override
-    public clsRegistroParqueo buscarXplaca(String prmPlca) {
+    public clsRegistroParqueo buscarXplaca(String prmPlca, String prmIdParqueadero) {
         String sql="select* from vehiculo where placa='"+prmPlca+"'";
         clsVehiculo objVehiculo=new clsVehiculo();
         clsRegistroParqueo objRegistro=null;
@@ -74,7 +74,7 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
             }else{
                 return null;
             }
-            sql="select * from registroparqueo where placa='"+prmPlca+"' and fechahorasalida is null";
+            sql="select * from registroparqueo where placa='"+prmPlca+"' and idparqueadero="+prmIdParqueadero+" and fechahorasalida is null";
             rs=null;
             rs=atrConsultas.consultasDML(sql);
             if(rs.next()){
@@ -88,8 +88,8 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
     }
 
     @Override
-    public clsRegistroParqueo buscarXcodigo(String prmCodigo) {
-        String sql="SELECT* FROM registroparqueo WHERE CODIGOBARRAS="+prmCodigo+" and fechahorasalida is null";
+    public clsRegistroParqueo buscarXcodigo(String prmCodigo, String prmIdParqueadero) {
+        String sql="SELECT* FROM registroparqueo WHERE CODIGOBARRAS="+prmCodigo+" and idparqueadero="+prmIdParqueadero+" and fechahorasalida is null";
         clsVehiculo objVehiculo=new clsVehiculo();
         clsRegistroParqueo objRegistro;
         try {

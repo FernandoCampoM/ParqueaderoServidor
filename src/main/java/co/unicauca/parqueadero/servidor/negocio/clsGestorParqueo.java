@@ -29,10 +29,10 @@ public class clsGestorParqueo {
     public boolean registrarSalida(clsRegistroParqueo prmRegistroParqueo){
         return atrRegistro.registrarSalida(prmRegistroParqueo);
     }
-    public clsRegistroParqueo buscarXplaca(String prmPlca) {
-       return atrRegistro.buscarXplaca(prmPlca);
+    public clsRegistroParqueo buscarXplaca(String prmPlca, String prmIdParqueadero) {
+       return atrRegistro.buscarXplaca(prmPlca,prmIdParqueadero);
     }
-    public clsRegistroParqueo buscarXcodigo(String prmCodigo) {
-        return atrRegistro.buscarXcodigo(prmCodigo);
+    public clsRegistroParqueo buscarXcodigo(String prmCodigo, String prmIdParqueadero) {
+        return atrRegistro.buscarXcodigo(prmCodigo,prmIdParqueadero);
     }
 }
