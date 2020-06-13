@@ -81,6 +81,7 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
                 objRegistro=new clsRegistroParqueo(new clsUsuario(),objVehiculo,rs.getString(6),rs.getString(5),rs.getString(4),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(12));
                 if(objRegistro.getNumeroCasillero()==null)
                     objRegistro.setNumeroCasillero("");
+                objRegistro.setIdRegistro(rs.getString(1));
             }
         } catch (Exception e) {
         }
@@ -98,6 +99,7 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
                 objRegistro=new clsRegistroParqueo(new clsUsuario(),objVehiculo,rs.getString(6),rs.getString(5),rs.getString(4),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(12));
                 if(objRegistro.getNumeroCasillero()==null)
                     objRegistro.setNumeroCasillero("");
+                objRegistro.setIdRegistro(rs.getString(1));
             }else{
                 return null;
             }
