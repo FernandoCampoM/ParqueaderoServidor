@@ -233,6 +233,7 @@ public class ParqueaderoServer implements Runnable {
                 }
                 break;
                 case "registrarSalida":
+                    System.out.println("Registro recibido: "+parametros[1]);
                 if (atrGestorParqueo.registrarSalida(atrParse.parseToRegistroParqueo(parametros[1]))) {
                     salidaDecorada.println("TRUE");
                 } else {

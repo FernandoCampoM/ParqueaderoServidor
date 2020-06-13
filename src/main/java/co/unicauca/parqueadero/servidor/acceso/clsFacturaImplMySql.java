@@ -20,7 +20,7 @@ clsConsultasBD atrConsultas;
 
     @Override
     public boolean guardar(clsFactura prmFactura) {
-         String sql="INSERT INTO FACTURA(IDREGISTRO,VALORAPAGAR) VALUES("+prmFactura.getIdRegistroParqueo()+","+prmFactura.getValorApagar()+")";
+         String sql="INSERT INTO FACTURACION(IDREGISTRO,VALORAPAGAR) VALUES("+prmFactura.getIdRegistroParqueo()+","+prmFactura.getValorApagar()+")";
          if(atrConsultas.consultasDDL(sql)>0){
             atrConsultas.close();
             return true;
