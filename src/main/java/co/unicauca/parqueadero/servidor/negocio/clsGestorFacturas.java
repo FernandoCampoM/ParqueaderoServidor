@@ -20,7 +20,7 @@ public class clsGestorFacturas {
     }
     public int valorApagar(String prmTipoVehiculo,int prmDias, int prmHoras,int prmMinutos){
         int valorApagar=0;
-        if(prmMinutos>15){
+        if(prmMinutos>0){
             valorApagar=Integer.parseInt(atrGestorTarifas.selectTarifa(prmTipoVehiculo, "HORA").getCosto());
         }
         valorApagar=valorApagar+valorApagarH(prmTipoVehiculo, prmHoras);
