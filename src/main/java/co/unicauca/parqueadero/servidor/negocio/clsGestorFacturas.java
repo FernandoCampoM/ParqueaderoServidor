@@ -18,7 +18,18 @@ public class clsGestorFacturas {
     public boolean guardar(clsFactura prmFactura){
         return atrFacturaDB.guardar(prmFactura);
     }
-    public int valorApagar(String prmTipoVehiculo,int prmDias, int prmHoras,int prmMinutos){
+    public int valorApagar(String prmTipoVehiculo,int prmDias, int prmHoras,int prmMinutos, int prmSegundos){
+        if(prmSegundos>0){
+            prmMinutos=prmMinutos+1;
+            if(prmMinutos==60){
+                prmHoras=prmHoras+1;
+                prmMinutos=0;
+                if(prmHoras==24){
+                    prmDias=prmDias+1;
+                    prmHoras=0;
+                }
+            }
+        }
         int valorApagar=0;
         if(prmMinutos>0){
             valorApagar=Integer.parseInt(atrGestorTarifas.selectTarifa(prmTipoVehiculo, "HORA").getCosto());
