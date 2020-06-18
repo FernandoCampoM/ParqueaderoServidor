@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.unicauca.parqueadero.servidor.negocio;
+
 import co.unicauca.parqueadero.servidor.acceso.*;
 import java.util.List;
 
@@ -12,24 +13,37 @@ import java.util.List;
  * @author Fernando Campo
  */
 public class clsGestorTarifas {
+
     List<clsTarifas> atrTarifas;
     ITarifas tarifaBD;
 
     public clsGestorTarifas() {
-        tarifaBD=new clsTarifasImplMySql();
+        tarifaBD = new clsTarifasImplMySql();
         cargarTarifas();
     }
-    
-    private void cargarTarifas(){
-        atrTarifas=tarifaBD.getTarifas();
+
+    /**
+     * Recupera las tarifas de la base de datos
+     */
+    private void cargarTarifas() {
+        atrTarifas = tarifaBD.getTarifas();
     }
-    public clsTarifas selectTarifa(String prmTipoVehiculo, String prmTipoTarifa){
-        clsTarifas obj=null;
+
+    /**
+     * Devuelve una tarifa de acuerdo al tipo de vehiculo y el tipo de tarifa.
+     *
+     * @param prmTipoVehiculo Tipo de vehiculo
+     * @param prmTipoTarifa Tipo Tarifa.
+     * @return
+     */
+    public clsTarifas selectTarifa(String prmTipoVehiculo, String prmTipoTarifa) {
+        clsTarifas obj = null;
         for (clsTarifas objTarifa : atrTarifas) {
-            if(objTarifa.getTipoVehiculo().equals(prmTipoVehiculo) && objTarifa.getTipoTarifa().equals(prmTipoTarifa))
-                obj= objTarifa;
+            if (objTarifa.getTipoVehiculo().equals(prmTipoVehiculo) && objTarifa.getTipoTarifa().equals(prmTipoTarifa)) {
+                obj = objTarifa;
+            }
         }
-            return obj;
+        return obj;
     }
-    
+
 }

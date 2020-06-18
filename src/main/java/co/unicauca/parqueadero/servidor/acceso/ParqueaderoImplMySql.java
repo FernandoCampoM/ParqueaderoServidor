@@ -133,6 +133,12 @@ public class ParqueaderoImplMySql implements IParqueadero {
         return false;
     }
 
+    /**
+     * Recupera los parqueadero en los cuales trabaja un usuario.
+     *
+     * @param prmCedula Cédula del usuario
+     * @return Lista de parqueaderos recuperados
+     */
     @Override
     public List<Parqueadero> findXcedula(String prmCedula) {
         String sql = "select* from usuarioparqueadero where cedula=" + prmCedula;

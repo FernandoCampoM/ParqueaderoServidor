@@ -28,6 +28,24 @@ public interface IRegistroParqueo {
      * @return Verdadero si el rpoceso fue esitoso, Falso de lo cotrario.
      */
     public boolean registrarSalida(clsRegistroParqueo prmRegistroParqueo);
+
+    /**
+     * Recupera un registro del parqueo de un vehiculo que esté parqueado
+     * realizando la busqueda por la placa.
+     *
+     * @param prmPlca Placa por la cual se desea buscar
+     * @param prmIdParqueadero Id del parqueadero en el cual se desea buscar.
+     * @return Objeto de clsRegistroParqueo
+     */
     public clsRegistroParqueo buscarXplaca(String prmPlca, String prmIdParqueadero);
+
+    /**
+     * Recupera un registro del parqueo de un vehiculo que esté parqueado
+     * realizando la busqueda por codigo de barras.
+     *
+     * @param prmCodigo Código de barras asociado con el registro a buscar
+     * @param prmIdParqueadero Id del parqueadero en el cual se desea buscar.
+     * @return Objeto de clsRegistroParqueo
+     */
     public clsRegistroParqueo buscarXcodigo(String prmCodigo, String prmIdParqueadero);
 }

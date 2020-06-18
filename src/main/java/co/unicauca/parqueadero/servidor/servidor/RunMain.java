@@ -1,12 +1,6 @@
 package co.unicauca.parqueadero.servidor.servidor;
 
-import java.sql.ResultSet;
-import co.unicauca.parqueadero.servidor.negocio.*;
-import co.unicauca.parqueadero.servidor.acceso.*;
-import co.unicauca.parqueadero.servidor.transversal.JSONServices;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
+
 /**
  * Aplicación principal que lanza el servidor
  * @author libardo

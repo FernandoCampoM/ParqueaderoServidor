@@ -10,6 +10,12 @@ import co.unicauca.parqueadero.servidor.negocio.*;
  * @author Fernando Campo
  */
 public class clsSeguridad {
+    /**
+     * Verifica la identidad de un usuario que intenta iniciar sesión.
+     * @param prmLogin login
+     * @param prmPassword contraseña.
+     * @return Verdadero si las credenciales son correctas. Falso de lo contrario.
+     */
     public boolean login(String prmLogin, String prmPassword){
         clsGestorUsuarios objGestor=new clsGestorUsuarios();
         clsUsuario objUser=objGestor.find(prmLogin);

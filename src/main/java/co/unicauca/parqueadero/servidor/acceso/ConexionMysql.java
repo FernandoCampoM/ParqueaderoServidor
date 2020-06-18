@@ -1,4 +1,3 @@
-
 package co.unicauca.parqueadero.servidor.acceso;
 
 import java.sql.Connection;
@@ -7,6 +6,7 @@ import java.sql.SQLException;
 
 /**
  * Permite conectarse a la base de datos agenda
+ *
  * @author Libardo
  */
 public class ConexionMysql {
@@ -17,7 +17,7 @@ public class ConexionMysql {
     private final String usuario;
     private final String contraseña;
     private final String url;
-    
+
     public ConexionMysql() {
         conexion = null;
         baseDatos = "parqueadero";

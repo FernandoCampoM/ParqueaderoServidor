@@ -13,16 +13,30 @@ import co.unicauca.parqueadero.servidor.acceso.clsVehiculoImplMySql;
  * @author Fernando Campo
  */
 public class clsGestorVehiculo {
-     IVehiculo atrVehiculoDB;
+
+    IVehiculo atrVehiculoDB;
 
     public clsGestorVehiculo() {
-        atrVehiculoDB=new clsVehiculoImplMySql();
+        atrVehiculoDB = new clsVehiculoImplMySql();
     }
-     
-    public boolean create(clsVehiculo prmVehiculo){
+
+    /**
+     * Realiza un nuevo registro de vehiculo en la base de datos
+     *
+     * @param prmVehiculo Vehiculo que será registrado
+     * @return Verdadero si el proceso fue exitoso. Falso de lo contrario.
+     */
+    public boolean create(clsVehiculo prmVehiculo) {
         return atrVehiculoDB.create(prmVehiculo);
     }
-    public clsVehiculo find(String prmPlaca){
+
+    /**
+     * Recupera un vehiculo asociado a una placa dada
+     *
+     * @param prmPlaca Placa del vehiculo que se desea recuperar
+     * @return Vehiculo recuperado
+     */
+    public clsVehiculo find(String prmPlaca) {
         return atrVehiculoDB.find(prmPlaca);
     }
 }
