@@ -6,6 +6,7 @@
 package co.unicauca.parqueadero.servidor.transversal;
 
 import co.unicauca.parqueadero.servidor.negocio.Parqueadero;
+import co.unicauca.parqueadero.servidor.negocio.clsEstadisticas;
 
 import co.unicauca.parqueadero.servidor.negocio.clsRegistroParqueo;
 import co.unicauca.parqueadero.servidor.negocio.clsUsuario;
@@ -47,11 +48,42 @@ public class JSONServices {
     }
 
     /**
+     * Convierte a JSON una lista de estadisticas.
+     *
+     * @param prmEstadisticas Lista de estadisticas
+     * @return
+     */
+    public String parseToJSONE(List<clsEstadisticas> prmEstadisticas) {
+        JsonObject jsonObj = new JsonObject();
+        int i = 1;
+        for (clsEstadisticas objEstadistica : prmEstadisticas) {
+            jsonObj.addProperty(String.valueOf(i), parseToJSON(objEstadistica));
+            System.out.println("Objeto: " + jsonObj.toString());
+            i++;
+        }
+        return jsonObj.toString();
+    }
+
+    /**
+     * Convierte a JSON un objeto de estadisticas.
+     *
+     * @param prmEstadistica Lista de estadisticas
+     * @return
+     */
+    public String parseToJSON(clsEstadisticas prmEstadistica) {
+        JsonObject jsonObj = new JsonObject();
+        jsonObj.addProperty("Hora", prmEstadistica.getHora());
+        jsonObj.addProperty("NumeroIngresos", prmEstadistica.getNumeroEntradas());
+        return jsonObj.toString();
+    }
+
+    /**
      * Serializa una lista de parqueaderos a JSON
      *
      * @param prmParqueaderos Lista de parqueaderos
      * @return Lista de parqueaderos en JSON
      */
+
     public String parseToJSON(List<Parqueadero> prmParqueaderos) {
         JsonObject jsonObj = new JsonObject();
         int i = 1;
@@ -165,9 +197,31 @@ public class JSONServices {
     }
 
     /**
+     * Descerializa una lista de estadisticas en JSON
+     *
+     * @param prmJSONEstadisticas Lista estadisticas en JSON
+     * @return Lista Estadisticas
+     */
+    public List<clsEstadisticas> parseToEstadisticas(String prmJSONEstadisticas) {
+        List<clsEstadisticas> objEstadistica = new ArrayList();
+        int i = 1;
+        try {
+            Gson gson = new Gson();
+            Properties properties = gson.fromJson(prmJSONEstadisticas, Properties.class);
+            while (true) {
+                objEstadistica.add(parseToEstadistica(properties.getProperty(String.valueOf(i))));
+                i++;
+            }
+        } catch (Exception e) {
+            System.out.println("Eror: " + e.getMessage());
+        }
+        return objEstadistica;
+    }
+
+    /**
      * Descerializa un parqueadero en JSON a un Objeto parqueadero
      *
-     * @param prmJSON Parqueadero Parqueaderon em JSON
+     * @param prmJSONParqueadero Parqueadero Parqueaderon em JSON
      * @return Objeto parqueadero
      */
     public Parqueadero parseToParqueadero(String prmJSONParqueadero) {
@@ -179,6 +233,21 @@ public class JSONServices {
         objParqueadero.setTelefono(properties.getProperty("Telefono"));
         objParqueadero.setId(properties.getProperty("IDParqueadero"));
         return objParqueadero;
+    }
+
+    /**
+     * Descerializa una estadistica JSON
+     *
+     * @param prmJSONEstadistica Estadistica JSON
+     * @return Objeto estadistica
+     */
+    public clsEstadisticas parseToEstadistica(String prmJSONEstadistica) {
+        clsEstadisticas objEstadistica = new clsEstadisticas();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONEstadistica, Properties.class);
+        objEstadistica.setHora(properties.getProperty("Hora"));
+        objEstadistica.setNumeroEntradas(properties.getProperty("NumeroIngresos"));
+        return objEstadistica;
     }
 
     /**

@@ -8,6 +8,8 @@ package co.unicauca.parqueadero.servidor.acceso;
 import co.unicauca.parqueadero.servidor.negocio.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -38,8 +40,36 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
             atrVehiculo.create(prmRegistroParqueo.getVehiculo());
         }
         if (atrConsultas.consultasDDL(sql) > 0) {
+            actualizarPuestos(prmRegistroParqueo, -1);
             atrConsultas.close();
             return true;
+        }
+        return false;
+    }
+
+    private boolean actualizarPuestos(clsRegistroParqueo prmRegistroParqueo, int prmIncremento) {
+        String sql = "select puestosdisponibles" + prmRegistroParqueo.getVehiculo().getTipoVehiculo() + " from parqueadero where idparqueadero=" + prmRegistroParqueo.getIdParqueadero();
+        int valor;
+        try {
+            System.out.println("Consulta: "+sql);
+            ResultSet rs = atrConsultas.consultasDML(sql);
+            if (rs == null) {
+                return false;
+            }
+            if (rs.next()) {
+                valor = rs.getInt(1);
+                valor = valor + prmIncremento;
+                sql = "UPDATE parqueadero set puestosdisponibles" + prmRegistroParqueo.getVehiculo().getTipoVehiculo() + "=" + valor + " where idparqueadero=" + prmRegistroParqueo.getIdParqueadero();
+                System.out.println("Consulta: "+sql);
+                if (atrConsultas.consultasDDL(sql) > 0) {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            return false;
         }
         return false;
     }
@@ -54,6 +84,7 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
     public boolean registrarSalida(clsRegistroParqueo prmRegistroParqueo) {
         String sql = "UPDATE registroparqueo set fechahorasalida='" + prmRegistroParqueo.getFechaHoraSalida() + "', entregaficha=" + prmRegistroParqueo.getEntregaFicha() + " where idregistro=" + prmRegistroParqueo.getIdRegistro();
         if (atrConsultas.consultasDDL(sql) > 0) {
+            actualizarPuestos(prmRegistroParqueo, 1);
             atrConsultas.close();
             return true;
         }
@@ -136,6 +167,26 @@ public class RegistroParqueoImplMySql implements IRegistroParqueo {
             return null;
         }
         return objRegistro;
+    }
+
+    @Override
+    public List<clsEstadisticas> afluencia(String prmFecha, String prmIdParqueadero) {
+        ResultSet rs = null;
+        List<clsEstadisticas> listaEstadistica = new ArrayList();
+        String sql = "SELECT HOUR(FECHAHORAENTRADA),COUNT(*) FROM REGISTROPARQUEO WHERE IDPARQUEADERO="+prmIdParqueadero+" AND DATE(FECHAHORAENTRADA)='"+prmFecha+"' group by HOUR(FECHAHORAENTRADA)";
+        try {
+            rs = atrConsultas.consultasDML(sql);
+            while (rs.next()) {
+                clsEstadisticas objEstadistica=new clsEstadisticas();
+                objEstadistica.setHora(rs.getString(1));
+                objEstadistica.setNumeroEntradas(rs.getString(2));
+                listaEstadistica.add(objEstadistica);
+            }
+            atrConsultas.close();
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ParqueaderoImpl, método getParqueaderos");
+        }
+        return listaEstadistica;
     }
 
 }

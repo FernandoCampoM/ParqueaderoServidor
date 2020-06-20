@@ -207,7 +207,7 @@ public class ParqueaderoServer implements Runnable {
                 }
                 break;
             case "buscarXcodigo":
-                objRegistro = atrGestorParqueo.buscarXcodigo(parametros[1],parametros[2]);
+                objRegistro = atrGestorParqueo.buscarXcodigo(parametros[1], parametros[2]);
                 if (objRegistro != null) {
                     salidaDecorada.println(atrParse.parseToJson(objRegistro));
                 } else {
@@ -223,7 +223,7 @@ public class ParqueaderoServer implements Runnable {
                 }
                 break;
             case "valorApagar":
-                salidaDecorada.println(atrGestorFacturas.valorApagar(parametros[1], Integer.parseInt(parametros[2]), Integer.parseInt(parametros[3]), Integer.parseInt(parametros[4]),Integer.parseInt(parametros[5])));
+                salidaDecorada.println(atrGestorFacturas.valorApagar(parametros[1], Integer.parseInt(parametros[2]), Integer.parseInt(parametros[3]), Integer.parseInt(parametros[4]), Integer.parseInt(parametros[5])));
                 break;
             case "guardarFactura":
                 if (atrGestorFacturas.guardar(atrParse.parseToFactura(parametros[1]))) {
@@ -232,12 +232,20 @@ public class ParqueaderoServer implements Runnable {
                     salidaDecorada.println("FALSE");
                 }
                 break;
-                case "registrarSalida":
-                    System.out.println("Registro recibido: "+parametros[1]);
+            case "registrarSalida":
+                System.out.println("Registro recibido: " + parametros[1]);
                 if (atrGestorParqueo.registrarSalida(atrParse.parseToRegistroParqueo(parametros[1]))) {
                     salidaDecorada.println("TRUE");
                 } else {
                     salidaDecorada.println("FALSE");
+                }
+                break;
+            case "afluencia":
+                List<clsEstadisticas> objEstadistica = atrGestorParqueo.afluencia(parametros[1], parametros[2]);
+                if (objEstadistica.size() > 0) {
+                    salidaDecorada.println(atrParse.parseToJSONE(objEstadistica));
+                } else {
+                    salidaDecorada.println("NO_ENCONTRADO");
                 }
                 break;
         }

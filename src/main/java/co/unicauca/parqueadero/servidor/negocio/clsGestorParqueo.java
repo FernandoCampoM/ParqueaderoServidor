@@ -6,6 +6,7 @@
 package co.unicauca.parqueadero.servidor.negocio;
 
 import co.unicauca.parqueadero.servidor.acceso.*;
+import java.util.List;
 
 /**
  *
@@ -61,5 +62,14 @@ public class clsGestorParqueo {
      */
     public clsRegistroParqueo buscarXcodigo(String prmCodigo, String prmIdParqueadero) {
         return atrRegistro.buscarXcodigo(prmCodigo, prmIdParqueadero);
+    }
+    /**
+     * Recupera una lista de estadisticas dada una fecha y el id de un parqueadero
+     * @param prmFecha Fecha dodne sequieren las estadisticas
+     * @param prmIdParqueadero Id del parqueadero que requiere las estadisticas.
+     * @return 
+     */
+    public List<clsEstadisticas> afluencia(String prmFecha, String prmIdParqueadero) {
+        return atrRegistro.afluencia(prmFecha, prmIdParqueadero);
     }
 }

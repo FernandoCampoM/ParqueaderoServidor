@@ -6,6 +6,7 @@
 package co.unicauca.parqueadero.servidor.acceso;
 
 import co.unicauca.parqueadero.servidor.negocio.*;
+import java.util.List;
 
 /**
  *
@@ -48,4 +49,11 @@ public interface IRegistroParqueo {
      * @return Objeto de clsRegistroParqueo
      */
     public clsRegistroParqueo buscarXcodigo(String prmCodigo, String prmIdParqueadero);
+    /**
+     * Recupera una lista de estadisticas dada una fecha y el id de un parqueadero
+     * @param prmFecha Fecha dodne sequieren las estadisticas
+     * @param prmIdParqueadero Id del parqueadero que requiere las estadisticas.
+     * @return 
+     */
+    public List<clsEstadisticas> afluencia(String prmFecha,String prmIdParqueadero);
 }
