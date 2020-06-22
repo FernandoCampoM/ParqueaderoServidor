@@ -117,6 +117,8 @@ public class JSONServices {
         jsonObj.addProperty("Direccion", prmParqueadero.getDireccion());
         jsonObj.addProperty("Telefono", prmParqueadero.getTelefono());
         jsonObj.addProperty("IDParqueadero", prmParqueadero.getId());
+        jsonObj.addProperty("DisponiblesCarro", prmParqueadero.getPuestosDisponiblesCarro());
+        jsonObj.addProperty("DisponiblesMoto", prmParqueadero.getPuestosDisponiblesMoto());
         return jsonObj;
     }
 
@@ -232,6 +234,8 @@ public class JSONServices {
         objParqueadero.setDireccion(properties.getProperty("Direccion"));
         objParqueadero.setTelefono(properties.getProperty("Telefono"));
         objParqueadero.setId(properties.getProperty("IDParqueadero"));
+        objParqueadero.setPuestosDisponiblesCarro(properties.getProperty("DisponiblesCarro"));
+        objParqueadero.setPuestosDisponiblesMoto(properties.getProperty("DisponiblesMoto"));
         return objParqueadero;
     }
 

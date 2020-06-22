@@ -36,6 +36,8 @@ public class ParqueaderoImplMySql implements IParqueadero {
             while (rs.next()) {
                 Parqueadero objParqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getString(3));
                 objParqueadero.setId(rs.getString(4));
+                objParqueadero.setPuestosDisponiblesCarro(rs.getString(5));
+                objParqueadero.setPuestosDisponiblesMoto(rs.getString(6));
                 listaParqueadero.add(objParqueadero);
             }
             atrConsultas.close();
@@ -61,6 +63,8 @@ public class ParqueaderoImplMySql implements IParqueadero {
             while (rs.next()) {
                 parqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getString(3));
                 parqueadero.setId(rs.getString(4));
+                parqueadero.setPuestosDisponiblesCarro(rs.getString(5));
+                parqueadero.setPuestosDisponiblesMoto(rs.getString(6));
             }
             atrConsultas.close();
         } catch (SQLException e) {
@@ -154,6 +158,8 @@ public class ParqueaderoImplMySql implements IParqueadero {
                 while (rs.next()) {
                     Parqueadero objParqueadero = new Parqueadero(rs.getString(1), rs.getString(2), rs.getString(3));
                     objParqueadero.setId(rs.getString(4));
+                    objParqueadero.setPuestosDisponiblesCarro(rs.getString(5));
+                    objParqueadero.setPuestosDisponiblesMoto(rs.getString(6));
                     listaParqueadero.add(objParqueadero);
                 }
                 atrConsultas.close();

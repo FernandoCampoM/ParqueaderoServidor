@@ -10,18 +10,58 @@ public class Parqueadero {
     private String direccion;
     private String telefono;
     private String atrId;
+    private String puestosDisponiblesCarro;
+    private String puestosDisponiblesMoto;
 
     public Parqueadero() {
         this.nombre = "";
         this.direccion = "";
         this.telefono = "";
         atrId = "";
+        puestosDisponiblesCarro = "";
+        puestosDisponiblesMoto = "";
     }
 
     public Parqueadero(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+    }
+
+    /**
+     * Recupera los puestos disponibles que tiene al parqueadero para moto
+     *
+     * @return Puestos disponibles para moto
+     */
+    public String getPuestosDisponiblesMoto() {
+        return puestosDisponiblesMoto;
+    }
+
+    /**
+     * Actualiza los puestos disponibles para moto
+     *
+     * @param puestosDisponiblesMoto Nuevos puestos disponibles.
+     */
+    public void setPuestosDisponiblesMoto(String puestosDisponiblesMoto) {
+        this.puestosDisponiblesMoto = puestosDisponiblesMoto;
+    }
+
+    /**
+     * Recupera los puestos disponibles para carro
+     *
+     * @return Puestos dispnibles para carro
+     */
+    public String getPuestosDisponiblesCarro() {
+        return puestosDisponiblesCarro;
+    }
+
+    /**
+     * Actualiza los puestos disponibles para carro
+     *
+     * @param puestosDisponibles Nuevos puestos disponibles.
+     */
+    public void setPuestosDisponiblesCarro(String puestosDisponibles) {
+        this.puestosDisponiblesCarro = puestosDisponibles;
     }
 
     /**
